@@ -22,27 +22,10 @@
 ```bash
 python3 main.py
 ```
-This runs the full pipeline: load → clean → preprocess → EDA
+This runs the full pipeline: load → clean → lowercase → encodes → EDA
 → feature engineering → feature selection → split → train (Logistic
 Regression + Naive Bayes) → evaluate → compare → save. Plots land in
 `outputs/figures/`, cleaned data in `data/processed/`, and trained
 artifacts in `models/`.
 
-### Predict the language of new text
-
-```bash
-python scripts/predict.py "bonjour madame" "hello there" "hola amigo"
-```
-
-## Extending the Project
-
-- **Add a new model:** create a new class in `src/models/` that subclasses
-  `BaseClassifier` and implements `_build_model()`, then add it to
-  `LanguageIdentificationPipeline._get_candidate_models()`.
-- **Hyperparameter tuning:** wrap any `BaseClassifier`'s `.model` with
-  `sklearn.model_selection.GridSearchCV`/`RandomizedSearchCV` inside
-  `ModelTrainer`, or add a dedicated `HyperparameterTuner` class following
-  the same single-responsibility pattern.
-- **New features:** add a class to `src/features/` following the
-  `fit_transform` / `transform` contract used by `TfidfFeatureExtractor`.
 
