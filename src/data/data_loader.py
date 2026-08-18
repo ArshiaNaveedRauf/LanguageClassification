@@ -9,5 +9,6 @@ class DataLoader:
     def load(self):
         if not Path(self.filename).exists():
             print("dataset does not exist")
+            return None
 
         return pd.read_csv(self.filename)
