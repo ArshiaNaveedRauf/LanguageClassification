@@ -19,7 +19,7 @@ class LanguageIdentificationPipeline:
         self.explorer.summary(data)
         data= self.cleaner.clean(data)
         data = self.preprocessor.preprocess(data)
-        data.to_csv("data/processed/cleaned_data.csv", index=False)
+        data.to_csv("dataset/processed/cleaned_data.csv", index=False)
         print(data.head())
         self.visualizer.bar_chart(data)
         self.visualizer.top_words_per_language(data)
