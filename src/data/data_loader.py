@@ -7,7 +7,7 @@ class DataLoader:
         self.filename = dataset_path
 
     def load(self):
-        if self.filename == "":
+        if not Path(self.filename).exists():
             print("dataset does not exist")
 
         return pd.read_csv(self.filename)
