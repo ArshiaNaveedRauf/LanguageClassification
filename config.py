@@ -2,3 +2,4 @@ dataset_path = "/Users/arshianaveed/LanguageClassification/dataset/raw/dataset.c
 text_column = "Text"
 language_column = "language"
 encoded_language_column= "languageEncoded"
+k_best_features = 60000

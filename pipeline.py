@@ -3,8 +3,11 @@ from src.data.data_cleaner import DataCleaner
 from src.data.data_preprocessor import DataProcessor
 from src.eda.data_explorer import DataExplorer
 from src.eda.visualizer import Visualizer
+from src.feature.feature_extracter import FeatureExtractor
+from src.feature.feature_selector import FeatureSelector
 from config import text_column, language_column
 from config import encoded_language_column
+from config import k_best_features
 
 class LanguageIdentificationPipeline:
     def __init__(self):
@@ -13,6 +16,9 @@ class LanguageIdentificationPipeline:
         self.preprocessor=  DataProcessor(text_column,language_column,encoded_language_column)
         self.explorer= DataExplorer(language_column)
         self.visualizer= Visualizer(language_column, text_column)
+        self.extractor = FeatureExtractor()
+        self.selector = FeatureSelector(k_best_features)
+
 
     def run_pipeline(self):
         data = self.loader.load()
@@ -23,5 +29,11 @@ class LanguageIdentificationPipeline:
         print(data.head())
         self.visualizer.bar_chart(data)
         self.visualizer.top_words_per_language(data)
+        X = data[text_column]
+        Y = data[encoded_language_column]
+        features = self.extractor.feature_extractor(X)
+        selected_features= self.selector.feature_selector(Y,features)
+
+
         
 
