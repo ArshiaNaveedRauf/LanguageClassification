@@ -5,3 +5,4 @@ encoded_language_column= "languageEncoded"
 k_best_features = 60000
 test_size = 0.2
 maximum_iteration= 1000
+random_state = 42
