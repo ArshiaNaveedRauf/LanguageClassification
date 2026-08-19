@@ -5,9 +5,14 @@ from src.eda.data_explorer import DataExplorer
 from src.eda.visualizer import Visualizer
 from src.feature.feature_extracter import FeatureExtractor
 from src.feature.feature_selector import FeatureSelector
+from src.data.data_splitter import DataSplitter
+from src.models.model_trainer import ModelTrainer
+from src.models.logistic_regression import LogisticRegressionModel
+from src.models.naive_bayes import NaiveBayesModel
 from config import text_column, language_column
 from config import encoded_language_column
 from config import k_best_features
+from config import test_size
 
 class LanguageIdentificationPipeline:
     def __init__(self):
@@ -18,6 +23,9 @@ class LanguageIdentificationPipeline:
         self.visualizer= Visualizer(language_column, text_column)
         self.extractor = FeatureExtractor()
         self.selector = FeatureSelector(k_best_features)
+        self.splitter= DataSplitter(test_size)
+        self.trainer = ModelTrainer([LogisticRegressionModel(), NaiveBayesModel()])
+
 
 
     def run_pipeline(self):
@@ -33,6 +41,10 @@ class LanguageIdentificationPipeline:
         Y = data[encoded_language_column]
         features = self.extractor.feature_extractor(X)
         selected_features= self.selector.feature_selector(Y,features)
+        x_train,x_test,y_train,y_test= self.splitter.data_splitter(selected_features,Y)
+        trained_models = self.trainer.train_all_models(x_train,y_train)
+
+
 
 
         
