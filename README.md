@@ -22,9 +22,9 @@
 ```bash
 python3 main.py
 ```
-This runs the full pipeline: load → clean → lowercase → encodes → EDA
-→ feature engineering → feature selection → split → train (Logistic
-Regression + Naive Bayes) → evaluate → compare → save. Plots land in
+This runs the full pipeline: load -> explore -> clean -> lowercase -> encodes -> EDA
+-> feature engineering -> feature selection -> split -> train (Logistic
+Regression + Naive Bayes) -> evaluate -> compare -> save. Plots land in
 `outputs/figures/`, cleaned data in `data/processed/`, and trained
 artifacts in `models/`.
 
