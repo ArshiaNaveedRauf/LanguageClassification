@@ -13,8 +13,8 @@ class BaseClass(ABC):
         return self.model.fit(x_train,y_train)
 
 
-    def predict(self,x_train):
-        return self.model.predict(x_train)
+    def predict(self,x):
+        return self.model.predict(x)
 
 
 
