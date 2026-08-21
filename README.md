@@ -28,4 +28,9 @@ Regression + Naive Bayes) -> evaluate -> compare -> save. Plots land in
 `outputs/figures/`, cleaned data in `data/processed/`, and trained
 artifacts in `models/`.
 
+**Known Limitations**
+**Logistic Regression:** 95.27%
+**Naive Bayes:** 95%
+
+model currently misclassifies some languages, likely due to limited training data/class imbalance / needs hyperparameter tuning
 
